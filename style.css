@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+    color: #245f94;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.flex-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 63px;
+    color: #245f94;
+    background-color: #f9f9f9;
+    border: 1px dashed #8ca5cf;
+    text-decoration: none;
+    width: calc(100% / 3 - 40px);
+}
