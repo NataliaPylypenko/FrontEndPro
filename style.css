@@ -24,5 +24,7 @@ h1 {
     background-color: #f9f9f9;
     border: 1px dashed #8ca5cf;
     text-decoration: none;
+    text-align: center;
     width: calc(100% / 3 - 40px);
+    padding: 10px 20px;
 }
