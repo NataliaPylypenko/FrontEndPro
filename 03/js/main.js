@@ -1,18 +1,28 @@
 let operation = prompt('What operation do you want? (add, sub, mult, div)');
 let firstNum = prompt('Enter first number');
-let SecondNum = prompt('Enter second number');
+let secondNum = prompt('Enter second number');
+
+firstNum = Number(firstNum);
+secondNum = Number(secondNum);
 
 let res;
-if (operation === 'add') {
-    res = `${firstNum} + ${SecondNum} = ${Number(firstNum) + Number(SecondNum)}`;
+
+if (!firstNum && firstNum !== 0 || !secondNum && secondNum !== 0) {
+    res = 'Enter the numbers in the second and third fields!!!';
+} else if (operation === 'add') {
+    res = `${firstNum} + ${secondNum} = ${firstNum + secondNum}`;
 } else if (operation === 'sub') {
-    res = `${firstNum} - ${SecondNum} = ${firstNum - SecondNum}`;
+    res = `${firstNum} - ${secondNum} = ${firstNum - secondNum}`;
 } else if (operation === 'mult') {
-    res = `${firstNum} * ${SecondNum} = ${firstNum * SecondNum}`;
+    res = `${firstNum} * ${secondNum} = ${firstNum * secondNum}`;
 } else if (operation === 'div') {
-    res = `${firstNum} / ${SecondNum} = ${firstNum / SecondNum}`;
+    if (secondNum !== 0) {
+        res = `${firstNum} / ${secondNum} = ${firstNum / secondNum}`;
+    } else {
+        res = 'Cannot be divided by zero';
+    }
 } else {
-    res = 'An error occurred!!!'
+    res = 'An error occurred!!! Select the correct operation!!!'
 }
 
 alert(res);
