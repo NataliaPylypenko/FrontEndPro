@@ -13,7 +13,8 @@ h1 {
 .flex-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 20px 0;
+    margin: 0 -10px;
 }
 .flex-item {
     display: flex;
@@ -25,6 +26,25 @@ h1 {
     border: 1px dashed #8ca5cf;
     text-decoration: none;
     text-align: center;
-    width: calc(100% / 3 - 40px);
+    width: calc(100% / 3 - 20px);
     padding: 10px 20px;
+    margin: 0 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    .flex-item {
+        width: calc(100% / 2 - 20px);
+    }
+}
+@media screen and (max-width: 639px) {
+    .container {
+        max-width: 100%;
+    }
+    .flex-item {
+        width: 100%;
+    }
 }
