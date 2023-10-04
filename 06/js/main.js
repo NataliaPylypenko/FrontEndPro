@@ -2,7 +2,7 @@ let message = '';
 
 let currentYear = new Date().getFullYear();
 let birthYear = prompt('What is your year of birth?');
-if(!isNaN(birthYear) && parseInt(birthYear) > currentYear - 120 && parseInt(birthYear) <= currentYear) {
+if(!isNaN( +birthYear ) && parseInt(birthYear) > currentYear - 120 && parseInt(birthYear) <= currentYear) {
     message += `You are ${currentYear - birthYear} years old. `
 } else if (birthYear === null || getTrimString(birthYear) === '') {
     alert('It is a pity that you did not want to enter your year of birth(');
@@ -14,20 +14,20 @@ let city = prompt('In which city do you live?');
 city = getTrimString(city);
 if (city === null || city === '') {
     alert('It is a pity that you did not want to enter the city in which you live(');
-} else if (!isNaN(city)) {
-    alert('You did not enter anything!!!');
-} else {
+} else if (isNaN( +city )) {
     getCountry(city.toLowerCase());
+} else {
+    alert('You entered an incorrect value!!!');
 }
 
 let sport = prompt('What is your favorite sport?');
 sport = getTrimString(sport);
 if (sport === null || sport === '') {
     alert('It is a pity that you did not want to enter your favorite sport(');
-} else if (!isNaN(sport)) {
-    alert('You did not enter anything!!!');
-} else {
+} else if (isNaN( +sport )) {
     getChampionName(sport.toLowerCase());
+} else {
+    alert('You entered an incorrect value!!!');
 }
 
 function getCountry(city) {
@@ -84,4 +84,6 @@ function upFirsLetter(word) {
 
 if (message) {
     alert(message);
+} else {
+    alert('You have not entered any information about yourself...');
 }
