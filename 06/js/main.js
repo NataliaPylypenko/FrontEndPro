@@ -1,36 +1,51 @@
 let message = '';
 
 let currentYear = new Date().getFullYear();
-let birthYear = prompt('What is your year of birth?');
-if(!isNaN( +birthYear ) && parseInt(birthYear) > currentYear - 120 && parseInt(birthYear) <= currentYear) {
-    message += `You are ${currentYear - birthYear} years old. `
-} else if (birthYear === null || getTrimString(birthYear) === '') {
-    alert('It is a pity that you did not want to enter your year of birth(');
-} else {
-    alert('You entered an incorrect value!!!');
+let maxAge = 120;
+
+for (let i = 0; i < 1; i++) {
+    let birthYear = prompt('What is your year of birth?');
+
+    if (birthYear === null) {
+        alert('It is a pity that you did not want to enter the city in which you live(');
+    } else if (birthYear === '') {
+        alert('You forgot to enter your year of birth!!!');
+        i--;
+    } else if (typeof +birthYear === "number" && parseInt(birthYear) > currentYear - maxAge && parseInt(birthYear) <= currentYear) {
+        message += `You are ${currentYear - birthYear} years old. `
+    } else {
+        alert('You entered an incorrect value!!!');
+        i--;
+    }
 }
 
-let city = prompt('In which city do you live?');
-city = getTrimString(city);
-if (city === null || city === '') {
-    alert('It is a pity that you did not want to enter the city in which you live(');
-} else if (isNaN( +city )) {
-    getCountry(city.toLowerCase());
-} else {
-    alert('You entered an incorrect value!!!');
+for (let i = 0; i < 1; i++) {
+    const city = getTrimString(prompt('In which city do you live?', ''));
+
+    if (city === null) {
+        alert('It is a pity that you did not want to enter the city in which you live(');
+    } else if (city === '') {
+        alert('You forgot to enter the city in which you live!!!');
+        i--;
+    } else {
+        getPlaceOfResidence(city.toLowerCase());
+    }
 }
 
-let sport = prompt('What is your favorite sport?');
-sport = getTrimString(sport);
-if (sport === null || sport === '') {
-    alert('It is a pity that you did not want to enter your favorite sport(');
-} else if (isNaN( +sport )) {
-    getChampionName(sport.toLowerCase());
-} else {
-    alert('You entered an incorrect value!!!');
+for (let i = 0; i < 1; i++) {
+    let sport = getTrimString(prompt('What is your favorite sport?'));
+
+    if (sport === null) {
+        alert('It is a pity that you did not want to enter your favorite sport(');
+    } else if (sport === '') {
+        alert('You forgot to enter your favorite sport!!!');
+        i--;
+    } else {
+        getChampionName(sport.toLowerCase());
+    }
 }
 
-function getCountry(city) {
+function getPlaceOfResidence(city) {
     switch (city) {
         case 'київ':
         case 'kyiv':
@@ -45,7 +60,7 @@ function getCountry(city) {
             message += 'You live in the capital of Great Britain. ';
             break;
         default:
-            message += `You live in the city of ${upFirsLetter(city)}. `;
+            message += `You live in the city of ${city.charAt(0).toUpperCase() + city.slice(1)}. `;
     }
 
     return message;
@@ -75,11 +90,6 @@ function getChampionName(sport) {
 function getTrimString(str) {
     if (str === null) return str;
     return str.trim();
-}
-
-function upFirsLetter(word) {
-    if (typeof word !== 'string' || word.length === 0) return word;
-    return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 if (message) {
