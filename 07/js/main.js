@@ -5,10 +5,10 @@ switch (numOrStr) {
     case null:
         console.log('ви скасували');
         break;
-    case numOrStr.trim() === '' ? numOrStr : false:
+    case numOrStr.trim() === '' && numOrStr :
         console.log('Empty String');
         break;
-    case isNaN( +numOrStr ) ? numOrStr : false:
+    case isNaN( +numOrStr ) && numOrStr :
         console.log('number is Ba_NaN');
         break;
     default:
