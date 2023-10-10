@@ -22,11 +22,12 @@ console.log('1', array);
 
 // Відсортувати масив за зростанням.
 
-array.sort((a, b) => a - b);
-console.log('2', array);
+arrayToSort = [...array].sort((a, b) => a - b);
+console.log('2', arrayToSort);
 
 // Видалити елементи з масиву з 2 по 4 (включно!).
 
-array.length >= 4 ? array.splice(1, 3) : array.splice(1);
-console.log('3', array);
+arrayToSplice = [...arrayToSort];
+arrayToSplice.length >= 4 ? arrayToSplice.splice(1, 3) : arrayToSplice.splice(1);
+console.log('3', arrayToSplice);
 
