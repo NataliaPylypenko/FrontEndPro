@@ -3,22 +3,17 @@
 let arrayLength;
 let array = [];
 
-for (let i = 0; i < 1; i++) {
+while (true) {
     arrayLength = parseInt(prompt('Please, enter length of array!'));
-
-    if (isNaN( +arrayLength )) {
-        alert('Please, enter a number!');
-        i--;
+    if(Number.isInteger(arrayLength)){
+        break;
     }
 }
 
-for (let i = 0; i < arrayLength; i ++) {
+while (array.length < arrayLength) {
     let elem = parseInt(prompt('Please, enter the element of array! Only numeric value!'));
 
-    if (isNaN( +elem )) {
-        alert('Please, enter a number!');
-        i--;
-    } else {
+    if(Number.isInteger(elem)){
         array.push(elem);
     }
 }
@@ -26,10 +21,12 @@ for (let i = 0; i < arrayLength; i ++) {
 console.log('1', array);
 
 // Відсортувати масив за зростанням.
+
 array.sort((a, b) => a - b);
 console.log('2', array);
 
 // Видалити елементи з масиву з 2 по 4 (включно!).
+
 array.length >= 4 ? array.splice(1, 3) : array.splice(1);
 console.log('3', array);
 
