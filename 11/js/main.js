@@ -14,10 +14,20 @@ const countPositiveElements = arr.reduce((acc, elem) => {
 console.log('countPositiveElements', countPositiveElements);
 
 // Знайти мінімальний елемент масиву та його порядковий номер.
-const minElem = arr.find(elem => {});
+const minElem = Math.min(...arr);
+const indexMinElem = arr.indexOf(minElem);
+
+console.log('minElem', minElem);
+console.log('indexMinElem', indexMinElem);
 
 // Знайти максимальний елемент масиву та його порядковий номер.
-const maxElem = arr.find(elem => {});
+const maxElem = arr.reduce((acc, elem) => {
+    return elem > acc ? elem : acc;
+}, arr[0]);
+const indexMaxElem = arr.findIndex(elem => elem === maxElem);
+
+console.log('maxElem', maxElem);
+console.log('indexMaxElem', indexMaxElem);
 
 // Визначити кількість негативних елементів.
 const countNegativeElements = arr.reduce((acc, elem) => {
@@ -56,4 +66,8 @@ const productPositiveElements = arr.reduce((acc, elem) => {
 console.log('productPositiveElements', productPositiveElements);
 
 // Знайти найбільший серед елементів масиву, остальні обнулити.
+const newArray = arr.map( elem => {
+    return elem === maxElem ? elem : 0;
+});
 
+console.log('newArray', newArray);
