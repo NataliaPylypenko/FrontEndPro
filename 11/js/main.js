@@ -2,18 +2,19 @@ const arr = [16, -37, 54, -4, 72, -56, 47, 4, -16, 25, -37, 46, 4, -51, 27, -63,
 console.log(arr);
 console.log('');
 
-// Знайти суму та кількість позитивних елементів.
-const sumPositiveElements = arr.reduce((acc, elem) => {
-    return elem > 0 ? acc + elem : acc;
-}, 0);
-console.log('sumPositiveElements', sumPositiveElements);
 
-const countPositiveElements = arr.reduce((acc, elem) => {
-    return elem > 0 ? acc + 1 : acc;
-}, 0);
+// Знайти суму та кількість позитивних елементів.
+
+const positiveElements = arr.filter( elem => elem > 0);
+const sumPositiveElements = positiveElements.reduce((acc, elem) => acc + elem, 0);
+const countPositiveElements = positiveElements.length;
+
+console.log('sumPositiveElements', sumPositiveElements);
 console.log('countPositiveElements', countPositiveElements);
 
+
 // Знайти мінімальний елемент масиву та його порядковий номер.
+
 const minElem = Math.min(...arr);
 const indexMinElem = arr.indexOf(minElem);
 
@@ -21,13 +22,12 @@ console.log('minElem', minElem);
 console.log('indexMinElem', indexMinElem);
 
 // Знайти максимальний елемент масиву та його порядковий номер.
-const maxElem = arr.reduce((acc, elem) => {
-    return elem > acc ? elem : acc;
-}, arr[0]);
+const maxElem = arr.reduce( (acc, elem) => acc < elem ? elem : acc);
 const indexMaxElem = arr.findIndex(elem => elem === maxElem);
 
 console.log('maxElem', maxElem);
 console.log('indexMaxElem', indexMaxElem);
+
 
 // Визначити кількість негативних елементів.
 const countNegativeElements = arr.reduce((acc, elem) => {
