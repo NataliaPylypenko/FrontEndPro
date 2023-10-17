@@ -1,22 +1,16 @@
 function randomInteger(min, max) {
-    let rand = min + Math.random() * (max + 1 - min);
-    return Math.floor(rand);
+    return Math.floor(min + Math.random() * (max + 1 - min));
 }
 
-const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 const length = 16;
+const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+const lengthCharacters = characters.length;
 
 function generateKey(keyLength, characters) {
-    let str = '';
-
-    for (let i = 1; i <= keyLength; i++) {
-        str += characters[randomInteger(0, characters.length - 1)];
-    }
-
-    return str;
+    return [...Array(keyLength)]
+        .map( () => characters[randomInteger(0, lengthCharacters - 1)])
+        .join('');
 }
 
 const key = generateKey(length, characters);
 console.log(key);
-
-console.log(key.length);
