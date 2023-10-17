@@ -1,8 +1,6 @@
 function removeElement(arr, element) {
     const indexOfElement = arr.indexOf(element);
-    if (indexOfElement === -1) return arr;
-
-    return arr.splice(indexOfElement, 1);
+    return indexOfElement !== -1 ? arr.splice(indexOfElement, 1) : arr;
 }
 
 const array = [1, 2, 3, 4, 5, 6, 7];
