@@ -9,10 +9,8 @@ const length = 16;
 function generateKey(keyLength, characters) {
     let str = '';
 
-    console.log(keyLength);
-
     for (let i = 1; i <= keyLength; i++) {
-        str += characters[randomInteger(1, characters.length)];
+        str += characters[randomInteger(0, characters.length - 1)];
     }
 
     return str;
