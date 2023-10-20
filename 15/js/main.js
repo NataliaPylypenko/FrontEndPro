@@ -72,12 +72,11 @@ console.log(doMath(x, mathematicalOperation, y));
 
 let mainArrayLengths = getUserResponseInteger('Enter the length of the main array');
 let internalArraysLengths = getUserResponseInteger('Enter the length of the internal arrays');
-const value = getUserResponseNotEmpty('Enter the value with which the array will be filled');
 
-const creatingAnArray = (mainArrayLengths, internalArraysLengths, value) => [...Array(mainArrayLengths)]
-        .map( () => [...Array(internalArraysLengths)].map( () => value) );
+const creatingAnArray = (mainArrayLengths, internalArraysLengths) => [...Array(mainArrayLengths)]
+        .map(() => [...Array(internalArraysLengths)].map(() => getUserResponseNotEmpty('Enter a value for the element of array')));
 
-console.log(creatingAnArray(mainArrayLengths, internalArraysLengths, value));
+console.log(creatingAnArray(mainArrayLengths, internalArraysLengths));
 
 
 // 4
