@@ -2,22 +2,20 @@
 
 const getUserResponseInteger = (message) => {
     let userResponse;
-    while (true) {
+    do {
         userResponse = parseInt(prompt(message));
-        if(Number.isInteger(userResponse)){
-            return userResponse;
-        }
-    }
+    } while (!Number.isInteger(userResponse));
+
+    return userResponse;
 };
 
 const getUserResponseNotEmpty = (message) => {
     let userResponse;
-    while (true) {
+    do {
         userResponse = prompt(message);
-        if(userResponse !== null && userResponse.trim() !== '') {
-            return userResponse;
-        }
-    }
+    } while (userResponse === null || userResponse.trim() === '');
+
+    return userResponse;
 };
 
 // 1
