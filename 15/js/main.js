@@ -70,14 +70,14 @@ console.log(doMath(x, mathematicalOperation, y));
 // Написати функцію заповнення даними користувача двомірного масиву. Довжину основного масиву
 // і внутрішніх масивів задає користувач. Значення всіх елементів всіх масивів задає користувач.
 
-// let mainArrayLengths = getUserResponseInteger('Enter the length of the main array');
-// let internalArraysLengths = getUserResponseInteger('Enter the length of the internal arrays');
-// const value = getUserResponseNotEmpty('Enter the value with which the array will be filled');
-//
-// const creatingAnArray = (mainArrayLengths, internalArraysLengths, value) => [...Array(mainArrayLengths)]
-//         .map( () => [...Array(internalArraysLengths)].map( () => value) );
-//
-// console.log(creatingAnArray(mainArrayLengths, internalArraysLengths, value));
+let mainArrayLengths = getUserResponseInteger('Enter the length of the main array');
+let internalArraysLengths = getUserResponseInteger('Enter the length of the internal arrays');
+const value = getUserResponseNotEmpty('Enter the value with which the array will be filled');
+
+const creatingAnArray = (mainArrayLengths, internalArraysLengths, value) => [...Array(mainArrayLengths)]
+        .map( () => [...Array(internalArraysLengths)].map( () => value) );
+
+console.log(creatingAnArray(mainArrayLengths, internalArraysLengths, value));
 
 
 // 4
@@ -85,10 +85,10 @@ console.log(doMath(x, mathematicalOperation, y));
 // 'func(" hello world", ['l', 'd'])' поверне нам "heo wor". Вихідний рядок та символи
 // для видалення задає користувач.
 
-// let string = getUserResponseNotEmpty('Enter string');
-// let charactersToDelete = getUserResponseNotEmpty('Enter characters to delete separated by spaces').split(' ');
-//
-// const removeCharacters = (string, charactersToDelete) => [...string]
-//     .filter(item => charactersToDelete.indexOf(item) === -1).join('');
-//
-// console.log(removeCharacters(string, charactersToDelete));
+let string = getUserResponseNotEmpty('Enter string');
+let charactersToDelete = getUserResponseNotEmpty('Enter characters to delete separated by spaces').split(' ');
+
+const removeCharacters = (string, charactersToDelete) => [...string]
+    .filter(item => charactersToDelete.indexOf(item) === -1).join('');
+
+console.log(removeCharacters(string, charactersToDelete));
