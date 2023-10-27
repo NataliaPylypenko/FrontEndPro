@@ -128,3 +128,7 @@ const result3 = sum(20);
  * Record: {func: <function>, sum: <function>, result1: 3, result2: 8, result3: 28}
  * Parent: null
  */
+
+console.log(result1);
+console.log(result2);
+console.log(result3);
