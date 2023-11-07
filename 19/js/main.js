@@ -60,11 +60,13 @@ class House {
     };
 
     addFlat(flat) {
-        this.flats.length < this.maxApartments
-            ? flat instanceof Flat
+        if (flat instanceof Flat) {
+            this.flats.length < this.maxApartments
                 ? this.flats.push(flat)
-                : console.log('Error: Add an instance of the Flat class!')
-            : console.log(`Error: This house contains only ${this.maxApartments} apartments`);
+                : console.log(`Error: This house contains only ${this.maxApartments} apartments`)
+        } else {
+            console.log('Error: Add an instance of the Flat class!');
+        }
     }
 }
 
