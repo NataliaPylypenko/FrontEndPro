@@ -32,7 +32,7 @@ class Person {
     }
 
     showInfoPerson() {
-        return `name: ${this.name}, age: ${this.age}`;
+        console.log(`name: ${this.name}, age: ${this.age}`);
     }
 }
 
@@ -57,9 +57,8 @@ class Car {
     }
 
     showInfoCar() {
-        return this.carOwner
-            ? `carBrand: ${this.carBrand}, model: ${this.model}, yearOfIssue: ${this.yearOfIssue}, numberPlate: ${this.numberPlate}, carOwner: ${this.carOwner.showInfoPerson()}`
-            : 'Error: the owner of the car is not 18 years old';
+        console.log(`carBrand: ${this.carBrand}, model: ${this.model}, yearOfIssue: ${this.yearOfIssue}, numberPlate: ${this.numberPlate}`);
+        this.carOwner && this.carOwner.showInfoPerson()
     }
 }
 
@@ -80,8 +79,18 @@ car3.assignOwnerCar(person3);
 car4.assignOwnerCar(person4);
 car4.assignOwnerCar(person5);
 
-console.log(car1.showInfoCar());
-console.log(car2.showInfoCar());
-console.log(car3.showInfoCar());
-console.log(car4.showInfoCar());
+console.log('-------------');
+car1.showInfoCar();
+console.log('-------------');
+car2.showInfoCar();
+console.log('-------------');
+car3.showInfoCar();
+console.log('-------------');
+car4.showInfoCar();
+console.log('-------------');
+
+console.log('car1', car1);
+console.log('car2', car2);
+console.log('car3', car3);
+console.log('car4', car4);
 
