@@ -16,83 +16,70 @@
  */
 
 class Hamburger {
-    static SIZE_BIG = 'big';
-    static SIZE_SMALL = 'small';
+    SIZE = {
+        big: {
+            price: 100,
+            calories: 40
+        },
+        small: {
+            price: 50,
+            calories: 20
+        }
+    };
 
-    static STUFFING_CHEESE = 'cheese';
-    static STUFFING_SALAD = 'salad';
-    static STUFFING_POTATO = 'potato';
+    STUFFING = {
+        cheese: {
+            price: 10,
+            calories: 20
+        },
+        salad: {
+            price: 20,
+            calories: 5
+        },
+        potato: {
+            price: 15,
+            calories: 10
+        }
+    };
 
-    static TOPPING_SEASONING = 'seasoning';
-    static TOPPING_MAYONNAISE = 'mayonnaise';
-
-    price = 0;
-    calories = 0;
+    TOPPING = {
+        seasoning: {
+            price: 15,
+            calories: 0
+        },
+        mayonnaise: {
+            price: 20,
+            calories: 5
+        }
+    };
 
     constructor(size, stuffing){
-        this.size = size;
-        this.stuffing = stuffing;
+        this.price = this.SIZE[size].price + this.STUFFING[stuffing].price;
+        this.calories = this.SIZE[size].calories + this.STUFFING[stuffing].calories;
     }
 
     addTopping(toppingType) {
-        let toppingPrice = toppingType === 'seasoning' ? 15 : 20;
-        let toppingCalories = toppingType === 'seasoning' ? 0 : 5;
+        this.price += this.TOPPING[toppingType].price;
+        this.calories += this.TOPPING[toppingType].calories;
 
-        this.price += toppingPrice;
-        this.calories += toppingCalories;
-
-        return this.price;
+        return this;
     }
 
     calculatePrice() {
-        this.price += this.size === 'big' ? 100 : 50;
-
-        switch (this.stuffing) {
-            case 'cheese':
-                this.price += 10;
-                break;
-            case 'salad':
-                this.price += 20;
-                break;
-            case 'potato':
-                this.price += 15;
-                break;
-            default:
-                console.log('Not available');
-                this.price += 0;
-        }
-
         return this.price;
     }
 
     calculateCalories() {
-        this.calories += this.size === 'big' ? 40 : 20;
-
-        switch (this.stuffing) {
-            case 'cheese':
-                this.calories += 20;
-                break;
-            case 'salad':
-                this.calories += 5;
-                break;
-            case 'potato':
-                this.calories += 10;
-                break;
-            default:
-                console.log('Not available');
-                this.calories += 0
-        }
-
         return this.calories;
     }
 }
 
 
 // маленький гамбургер з начинкою з сиру
-const hamburger = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
+const hamburger = new Hamburger('small', 'cheese');
 
 // добавка з майонезу
-hamburger.addTopping(Hamburger.TOPPING_MAYONNAISE);
+hamburger.addTopping('mayonnaise');
 
 // запитаємо скільки там калорій
 console.log(`Calories: ${hamburger.calculateCalories()}`);
@@ -101,7 +88,7 @@ console.log(`Calories: ${hamburger.calculateCalories()}`);
 console.log(`Price: ${hamburger.calculatePrice()}`);
 
 // я тут передумав і вирішив додати ще приправу
-hamburger.addTopping(Hamburger.TOPPING_SEASONING);
+hamburger.addTopping('seasoning');
 
 // А скільки тепер калорій?
 console.log(`Calories with sauce: ${hamburger.calculateCalories()}`);
