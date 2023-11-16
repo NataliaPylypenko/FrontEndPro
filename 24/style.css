@@ -1,0 +1,17 @@
+.flex-wrapper {
+    display: flex;
+    gap: 20px;
+}
+.flex-item {
+    width: 50%;
+}
+
+.ghost {
+    width: 100%;
+    height: 100%;
+    background: darkcyan;
+}
+
+.hide {
+    display: none;
+}
