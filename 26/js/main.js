@@ -7,15 +7,14 @@
     з анімацією - затримка 2 секунди
  */
 
-const lists = document.querySelectorAll('ul');
-console.dir(lists);
-
 const setLastItemClassName = () => {
+    const lists = document.querySelectorAll('ul');
     lists.forEach(li => li.lastElementChild.classList.add('last'));
 };
 setLastItemClassName();
 
 const setFirstItemClassName = (level) => {
+    const lists = document.querySelectorAll(`ul.root ${'ul'.repeat(level - 1)}`);
     lists.forEach(li => li.firstElementChild.classList.add('first'));
 };
-setFirstItemClassName();
+setFirstItemClassName(2);

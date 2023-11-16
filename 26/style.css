@@ -1,9 +1,20 @@
 li.first {
     color: orangered;
+    animation: colorChange 2s;
 }
 li.last {
     color: forestgreen;
+    animation: colorChange 2s;
 }
 li {
     color: black;
+}
+
+@keyframes colorChange {
+    0% {
+        color: black;
+    }
+    100% {
+        color: initial;
+    }
 }
