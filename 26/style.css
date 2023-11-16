@@ -1,0 +1,9 @@
+li.first {
+    color: orangered;
+}
+li.last {
+    color: forestgreen;
+}
+li {
+    color: black;
+}
