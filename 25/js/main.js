@@ -3,17 +3,20 @@
  */
 
 const root = document.querySelector('#root');
+const table = document.createElement('table');
+let num = 1;
 
-const gridContainer = document.createElement('div');
-gridContainer.classList.add('grid-container');
+for (let i = 0; i < 10; i++) {
+    const tr = document.createElement('tr');
 
-for (let i = 1; i <= 100; i++) {
-    const gridItem = document.createElement('div');
-    gridItem.classList.add('grid-item');
+    for (let k = 0; k < 10; k++) {
+        const td = document.createElement('td');
+        td.textContent = num;
+        num++;
+        tr.appendChild(td);
+    }
 
-    gridItem.textContent = i;
-
-    gridContainer.appendChild(gridItem)
+    table.appendChild(tr)
 }
 
-root.appendChild(gridContainer);
+root.appendChild(table);

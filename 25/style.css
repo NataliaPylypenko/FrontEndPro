@@ -1,16 +1,9 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    gap: 10px;
-    max-width: 500px;
+table {
     background-color: darkcyan;
+    border-spacing: 5px;
     margin: 0 auto;
-    padding: 10px;
 }
-
-.grid-item {
+td {
     background-color: cyan;
-    border: 1px solid black;
-    text-align: center;
-    font-size: 30px;
+    padding: 10px;
 }
