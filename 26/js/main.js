@@ -18,3 +18,15 @@ const setFirstItemClassName = (level) => {
     lists.forEach(li => li.firstElementChild.classList.add('first'));
 };
 setFirstItemClassName(2);
+
+document.querySelectorAll('.last').forEach(item => {
+    setTimeout(() => {
+        item.style.backgroundColor = 'forestgreen';
+    }, 2000);
+});
+
+document.querySelectorAll('.first').forEach(item => {
+    setTimeout(() => {
+        item.style.backgroundColor = 'orangered';
+    }, 2000);
+});
