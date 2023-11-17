@@ -4,15 +4,13 @@
 
 const root = document.querySelector('#root');
 const table = document.createElement('table');
-let num = 1;
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 100; i += 10) {
     const tr = document.createElement('tr');
 
-    for (let k = 0; k < 10; k++) {
+    for (let k = 1; k <= 10; k++) {
         const td = document.createElement('td');
-        td.textContent = num;
-        num++;
+        td.textContent = i + k;
         tr.appendChild(td);
     }
 
