@@ -1,14 +1,15 @@
-let result = 1;
-
 const pow = (num, degree) => {
-    result *= num;
-    degree--;
-
-    if(degree > 0) {
-        pow(num, degree);
+    if(degree < 0) {
+        return 'Invalid degree';
     }
 
-    return result;
+    if (degree === 0) {
+        return 1;
+    }
+
+    return num * pow(num, --degree);
 };
 
-console.log(pow(3, 3));
+console.log('3**-3:', pow(3, -3));
+console.log('3**0:', pow(3, 0));
+console.log('3**3:', pow(3, 3));
