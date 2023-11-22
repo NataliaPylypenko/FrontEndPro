@@ -7,26 +7,30 @@
     з анімацією - затримка 2 секунди
  */
 
+
+
 const setLastItemClassName = () => {
     const lists = document.querySelectorAll('ul');
     lists.forEach(li => li.lastElementChild.classList.add('last'));
 };
 setLastItemClassName();
 
-const setFirstItemClassName = (level) => {
-    const lists = document.querySelectorAll(`ul.root ${'> li > ul'.repeat(level - 1)}`);
-    lists.forEach(li => li.firstElementChild.classList.add('first'));
+const root = document.querySelector('ul.root');
+const setFirstItemClassName = (ul, level) => {
+    level--;
+
+    if(level === 0) {
+        ul.firstElementChild.classList.add('first');
+    } else {
+        const ulChildren = [...ul.children];
+
+        ulChildren.forEach(li => {
+            const liChildren = [...li.children];
+            liChildren.forEach(ul => setFirstItemClassName(ul, level))
+        })
+    }
 };
-setFirstItemClassName(3);
 
-document.querySelectorAll('.last').forEach(item => {
-    setTimeout(() => {
-        item.style.border = '1px solid forestgreen';
-    }, 2000);
-});
+setFirstItemClassName(root, 3);
 
-document.querySelectorAll('.first').forEach(item => {
-    setTimeout(() => {
-        item.style.border = '1px solid orangered';
-    }, 2000);
-});
+

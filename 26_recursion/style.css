@@ -1,0 +1,23 @@
+li {
+    border: 1px solid transparent;
+}
+li.first {
+    border: 1px solid orangered;
+    animation: colorChange 2s;
+}
+li.last {
+    border: 1px solid forestgreen;
+    animation: colorChange 2s;
+}
+
+@keyframes colorChange {
+    0% {
+        border: 1px solid transparent;
+    }
+    99% {
+        border: 1px solid transparent;
+    }
+    100% {
+        border: 1px solid initial;
+    }
+}
