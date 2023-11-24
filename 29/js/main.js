@@ -20,8 +20,8 @@ const blockHeight = block.clientHeight;
 const MOVE = 10;
 
 const showBoom = () => {
-    boom.style.display = 'block';
-    setTimeout(() => boom.style.display = 'none', 2000);
+    setTimeout(() => boom.style.display = 'block', 500);
+    setTimeout(() => boom.style.display = 'none', 2500);
 };
 
 const handleKeydownArrow = (direction) => {
@@ -31,35 +31,35 @@ const handleKeydownArrow = (direction) => {
     const blockStyleLeft = parseInt(block.style.left);
     const blockStyleTop = parseInt(block.style.top);
 
-    const movementWidth = ((bodyWidth - blockWidth) / 2) - MOVE;
-    const movementHeight = ((bodyHeight - blockHeight) / 2) - MOVE;
+    const movementWidth = (bodyWidth - blockWidth) / 2;
+    const movementHeight = (bodyHeight - blockHeight) / 2;
 
     if(direction === 'right') {
-        if(movementWidth >= blockStyleLeft) {
+        if(movementWidth - MOVE >= blockStyleLeft) {
             block.style.left = `${blockStyleLeft + MOVE}px`;
         } else {
-            block.style.left = `${movementWidth + MOVE}px`;
+            block.style.left = `${movementWidth - 2 * MOVE}px`;
             showBoom();
         }
     } else if(direction === 'left') {
-        if(movementWidth >= -blockStyleLeft) {
+        if(movementWidth - MOVE >= -blockStyleLeft) {
             block.style.left = `${blockStyleLeft - MOVE}px`;
         } else {
-            block.style.left = `${-movementWidth - MOVE}px`;
+            block.style.left = `${-movementWidth + 2 * MOVE}px`;
             showBoom();
         }
     } else if(direction === 'top') {
-        if(movementHeight >= -blockStyleTop) {
+        if(movementHeight - MOVE >= -blockStyleTop) {
             block.style.top = `${blockStyleTop - MOVE}px`;
         } else {
-            block.style.top = `${-movementHeight - MOVE}px`;
+            block.style.top = `${-movementHeight + 2 * MOVE}px`;
             showBoom();
         }
     } else if(direction === 'bottom') {
-        if(movementHeight >= blockStyleTop) {
+        if(movementHeight - MOVE >= blockStyleTop) {
             block.style.top = `${blockStyleTop + MOVE}px`;
         } else {
-            block.style.top = `${movementHeight + MOVE}px`;
+            block.style.top = `${movementHeight - 2 * MOVE}px`;
             showBoom();
         }
     }
@@ -67,7 +67,9 @@ const handleKeydownArrow = (direction) => {
 
 const handleKeydownSpace = () => {
     if (block.style.top === '') block.style.top = '0';
+
     block.style.top = `${parseInt(block.style.top) - 10}px`;
+
     setTimeout(() => block.style.top = `${parseInt(block.style.top) + 10}px`, 500);
 };
 
