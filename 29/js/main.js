@@ -19,8 +19,6 @@ const blockWidth = block.clientWidth;
 const blockHeight = block.clientHeight;
 const MOVE = 10;
 
-console.log((bodyWidth - blockWidth) / 2);
-
 const showBoom = () => {
     boom.style.display = 'block';
     setTimeout(() => boom.style.display = 'none', 2000);
