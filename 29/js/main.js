@@ -12,15 +12,68 @@
 
 const body = document.querySelector('body');
 const block = document.querySelector('.block');
+const boom = document.querySelector('.boom');
+const bodyWidth = body.clientWidth;
+const bodyHeight = body.clientHeight;
+const blockWidth = block.clientWidth;
+const blockHeight = block.clientHeight;
+const MOVE = 10;
 
-console.dir(block);
+console.log((bodyWidth - blockWidth) / 2);
 
-const handleSpace = () => {
+const showBoom = () => {
+    boom.style.display = 'block';
+    setTimeout(() => boom.style.display = 'none', 2000);
+};
+
+const handleKeydownArrow = (direction) => {
+    if (block.style.top === '') block.style.top = '0';
+    if (block.style.left === '') block.style.left = '0';
+
+    const blockStyleLeft = parseInt(block.style.left);
+    const blockStyleTop = parseInt(block.style.top);
+
+    const movementWidth = ((bodyWidth - blockWidth) / 2) - MOVE;
+    const movementHeight = ((bodyHeight - blockHeight) / 2) - MOVE;
+
+    if(direction === 'right') {
+        if(movementWidth >= blockStyleLeft) {
+            block.style.left = `${blockStyleLeft + MOVE}px`;
+        } else {
+            block.style.left = `${movementWidth + MOVE}px`;
+            showBoom();
+        }
+    } else if(direction === 'left') {
+        if(movementWidth >= -blockStyleLeft) {
+            block.style.left = `${blockStyleLeft - MOVE}px`;
+        } else {
+            block.style.left = `${-movementWidth - MOVE}px`;
+            showBoom();
+        }
+    } else if(direction === 'top') {
+        if(movementHeight >= -blockStyleTop) {
+            block.style.top = `${blockStyleTop - MOVE}px`;
+        } else {
+            block.style.top = `${-movementHeight - MOVE}px`;
+            showBoom();
+        }
+    } else if(direction === 'bottom') {
+        if(movementHeight >= blockStyleTop) {
+            block.style.top = `${blockStyleTop + MOVE}px`;
+        } else {
+            block.style.top = `${movementHeight + MOVE}px`;
+            showBoom();
+        }
+    }
+};
+
+const handleKeydownSpace = () => {
     if (block.style.top === '') block.style.top = '0';
     block.style.top = `${parseInt(block.style.top) - 10}px`;
     setTimeout(() => block.style.top = `${parseInt(block.style.top) + 10}px`, 500);
 };
-const handleCtrl = () => {
+
+const handleKeydownCtrl = () => {
     if (block.style.width === '') block.style.width = '100px';
     if (block.style.height === '') block.style.height = '100px';
 
@@ -39,23 +92,23 @@ const handleCtrl = () => {
 const handleKeydown = (e) => {
     switch (e.code) {
         case 'ArrowRight':
-            console.log('ArrowRight');
+            handleKeydownArrow('right');
             break;
         case 'ArrowLeft':
-            console.log('ArrowLeft');
+            handleKeydownArrow('left');
             break;
         case 'ArrowUp':
-            console.log('ArrowUp');
+            handleKeydownArrow('top');
             break;
         case 'ArrowDown':
-            console.log('ArrowDown');
+            handleKeydownArrow('bottom');
             break;
         case 'Space':
-            handleSpace();
+            handleKeydownSpace();
             break;
         case 'ControlLeft':
         case 'ControlRight':
-            handleCtrl();
+            handleKeydownCtrl();
             break;
     }
 };
