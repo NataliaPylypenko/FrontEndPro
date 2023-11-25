@@ -10,20 +10,24 @@
         * {
             box-sizing: border-box;
         }
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
         body{
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .block{
             width: 100px;
             height: 100px;
             position: relative;
-            background-color: darkcyan;
             left: 0;
             top: 0;
+            background-color: darkcyan;
             transition: 0.5s;
         }
         .boom {

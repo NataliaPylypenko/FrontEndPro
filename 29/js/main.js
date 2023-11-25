@@ -17,51 +17,41 @@ const bodyWidth = body.clientWidth;
 const bodyHeight = body.clientHeight;
 const blockWidth = block.clientWidth;
 const blockHeight = block.clientHeight;
-const MOVE = 10;
+const STEP_SIZE = 10;
 
 const showBoom = () => {
-    setTimeout(() => boom.style.display = 'block', 500);
-    setTimeout(() => boom.style.display = 'none', 2500);
+    boom.style.display = 'block';
+    setTimeout(() => boom.style.display = 'none', 2000);
+};
+
+const updatePosition = (direction, prop) => {
+    if (block.style[prop] === '') block.style[prop] = '0';
+
+    const blockStyleProp = parseInt(block.style[prop]);
+    const movement = (prop === 'left') ? (bodyWidth - blockWidth) / 2 : (bodyHeight - blockHeight) / 2;
+
+    if (direction === 'right' || direction === 'bottom') {
+        if (movement - STEP_SIZE >= blockStyleProp) {
+            block.style[prop] = `${blockStyleProp + STEP_SIZE}px`;
+        } else {
+            block.style[prop] = `${movement - 2 * STEP_SIZE}px`;
+            showBoom();
+        }
+    } else {
+        if (movement - STEP_SIZE >= -blockStyleProp) {
+            block.style[prop] = `${blockStyleProp - STEP_SIZE}px`;
+        } else {
+            block.style[prop] = `${-movement + 2 * STEP_SIZE}px`;
+            showBoom();
+        }
+    }
 };
 
 const handleKeydownArrow = (direction) => {
-    if (block.style.top === '') block.style.top = '0';
-    if (block.style.left === '') block.style.left = '0';
-
-    const blockStyleLeft = parseInt(block.style.left);
-    const blockStyleTop = parseInt(block.style.top);
-
-    const movementWidth = (bodyWidth - blockWidth) / 2;
-    const movementHeight = (bodyHeight - blockHeight) / 2;
-
-    if(direction === 'right') {
-        if(movementWidth - MOVE >= blockStyleLeft) {
-            block.style.left = `${blockStyleLeft + MOVE}px`;
-        } else {
-            block.style.left = `${movementWidth - 2 * MOVE}px`;
-            showBoom();
-        }
-    } else if(direction === 'left') {
-        if(movementWidth - MOVE >= -blockStyleLeft) {
-            block.style.left = `${blockStyleLeft - MOVE}px`;
-        } else {
-            block.style.left = `${-movementWidth + 2 * MOVE}px`;
-            showBoom();
-        }
-    } else if(direction === 'top') {
-        if(movementHeight - MOVE >= -blockStyleTop) {
-            block.style.top = `${blockStyleTop - MOVE}px`;
-        } else {
-            block.style.top = `${-movementHeight + 2 * MOVE}px`;
-            showBoom();
-        }
-    } else if(direction === 'bottom') {
-        if(movementHeight - MOVE >= blockStyleTop) {
-            block.style.top = `${blockStyleTop + MOVE}px`;
-        } else {
-            block.style.top = `${movementHeight - 2 * MOVE}px`;
-            showBoom();
-        }
+    if (direction === 'right' || direction === 'left') {
+        updatePosition(direction, 'left');
+    } else {
+        updatePosition(direction, 'top');
     }
 };
 
