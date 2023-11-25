@@ -24,8 +24,12 @@ function Box(block) {
         setTimeout(() => boom.style.display = 'none', 2000);
     };
 
-    block.style.top = `${(bodyHeight - blockHeight) / 2}px`;
-    block.style.left = `${(bodyWidth - blockWidth) / 2}px`;
+    const setPosition = (top, left) => {
+        block.style.top = `${top}px`;
+        block.style.left = `${left}px`;
+    };
+
+    setPosition((bodyHeight - blockHeight) / 2, (bodyWidth - blockWidth) / 2);
 
     return {
         moveUp: () => {
@@ -64,36 +68,40 @@ function Box(block) {
             block.style.top = `${parseInt(block.style.top) - STEP_SIZE}px`;
 
             if (parseInt(block.style.top) <= 0) {
+                block.style.top = `0px`;
                 showBoom();
-                block.style.top = `${STEP_SIZE * 2}px`;
+                setTimeout(() => block.style.top = `${STEP_SIZE * 2}px`, 200);
                 return;
             }
 
-            setTimeout(() => block.style.top = `${parseInt(block.style.top) + STEP_SIZE}px`, 400)
+            setTimeout(() => block.style.top = `${parseInt(block.style.top) + STEP_SIZE}px`, 500)
         },
         satDown: () => {
             block.style.height = `${blockHeight - blockHeight * 0.4}px`;
             block.style.top = `${parseInt(block.style.top) + blockHeight * 0.2}px`;
 
             block.style.width = `${blockWidth + blockWidth * 0.25}px`;
-            block.style.left = `${parseInt(block.style.left) - blockWidth * 0.25 / 2}px`;
+            block.style.left = `${parseInt(block.style.left) - blockWidth * 0.125}px`;
 
             setTimeout(() => {
                 block.style.height = `${blockHeight}px`;
                 block.style.top = `${parseInt( block.style.top) - blockHeight * 0.2}px`;
+
                 block.style.width = `${blockWidth}px`;
-                block.style.left = `${parseInt(block.style.left) + blockWidth * 0.25 / 2}px`;
-            }, 400);
+                block.style.left = `${parseInt(block.style.left) + blockWidth * 0.125}px`;
+            }, 500);
 
             if (parseInt(block.style.left) + parseInt(block.style.width) >= bodyWidth) {
+                block.style.left = `${bodyWidth - blockWidth}px`;
                 showBoom();
-                block.style.left = `${bodyWidth - blockWidth - STEP_SIZE * 3}px`;
+                setTimeout(() => block.style.left = `${bodyWidth - blockWidth - STEP_SIZE * 2}px`, 200);
                 return;
             }
 
             if (parseInt(block.style.left) <= 0) {
+                block.style.left = `0px`;
                 showBoom();
-                block.style.left = `${STEP_SIZE * 2}px`;
+                setTimeout(() => block.style.left = `${STEP_SIZE * 2}px`, 200);
                 return;
             }
         }
