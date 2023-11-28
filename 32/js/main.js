@@ -7,34 +7,40 @@
  */
 
 class VotingProgram {
-    smiles = {
-        5: '128512',
-        4: '128522',
-        3: '128528',
-        2: '128530',
-        1: '128544',
-    };
+    constructor(smiles = ['128512', '128522', '128579', '128526', '129395']) {
+        this.smiles = smiles;
+    }
 
-    generateSmiles() {
-        const smilesArray = Object.values(this.smiles);
+    generateVoting() {
+        const votingBlock = document.createElement('div');
+        votingBlock.classList.add('voting');
 
-        const smilesBlock = document.createElement('div');
-        smilesBlock.classList.add('smiles');
+        this.smiles.map(smile => {
+            const cardBlock = document.createElement('div');
+            cardBlock.classList.add('card');
 
-        smilesArray.map(smile => {
             const span = document.createElement('span');
             span.innerHTML = `&#${smile};`;
-            smilesBlock.appendChild(span);
+
+            const counter = document.createElement('h3');
+            counter.innerHTML = `0`;
+
+            cardBlock.appendChild(span);
+            cardBlock.appendChild(counter);
+            votingBlock.appendChild(cardBlock);
         });
 
-        return smilesBlock;
+        return votingBlock;
     }
 
     render() {
         const root = document.querySelector('#root');
-        root.appendChild(this.generateSmiles());
+        root.appendChild(this.generateVoting());
     }
 }
 
 const voting1 = new VotingProgram();
 voting1.render();
+
+// const voting2 = new VotingProgram(['128569']);
+// voting2.render();
