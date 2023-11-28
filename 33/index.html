@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>33. Реалізувати подобу інтернет-магазину</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root">
+    <div class="row">
+        <div class="column" style="background-color:#aaa;">
+            <h2>Column 1</h2>
+            <p>Some text..</p>
+        </div>
+        <div class="column" style="background-color:#bbb;">
+            <h2>Column 2</h2>
+            <p>Some text..</p>
+        </div>
+        <div class="column" style="background-color:#ccc;">
+            <h2>Column 3</h2>
+            <p>Some text..</p>
+        </div>
+    </div>
+</div>
+
+<script src="./js/main.js"></script>
+</body>
+</html>
