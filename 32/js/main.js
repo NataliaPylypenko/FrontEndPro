@@ -33,6 +33,17 @@ class VotingProgram {
         return votingBlock;
     }
 
+    listener() {
+        const voting = document.querySelector('.voting');
+        voting.addEventListener('click', this.handleClick);
+    }
+
+    handleClick(e) {
+        if(e.target.nodeName === 'SPAN') {
+            e.target.nextSibling.textContent = parseInt(e.target.nextSibling.textContent) + 1;
+        }
+    }
+
     render() {
         const root = document.querySelector('#root');
         root.appendChild(this.generateVoting());
@@ -41,6 +52,7 @@ class VotingProgram {
 
 const voting1 = new VotingProgram();
 voting1.render();
+voting1.listener();
 
 // const voting2 = new VotingProgram(['128569']);
 // voting2.render();
