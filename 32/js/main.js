@@ -40,8 +40,8 @@ class VotingProgram {
     }
 
     listener() {
-        const voting = document.querySelector('.voting');
-        voting.addEventListener('click', this.handleClick);
+        const votings = document.querySelectorAll('.voting');
+        votings.forEach(voting => voting.addEventListener('click', this.handleClick));
     }
 
     handleClick(e) {
