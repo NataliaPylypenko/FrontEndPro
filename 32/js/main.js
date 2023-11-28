@@ -11,22 +11,28 @@ class VotingProgram {
         this.smiles = smiles;
     }
 
+    generateCard(smile, count) {
+        const cardBlock = document.createElement('div');
+        cardBlock.classList.add('card');
+
+        const span = document.createElement('span');
+        span.innerHTML = `&#${smile};`;
+
+        const counter = document.createElement('h3');
+        counter.innerHTML = count;
+
+        cardBlock.appendChild(span);
+        cardBlock.appendChild(counter);
+
+        return cardBlock;
+    }
+
     generateVoting() {
         const votingBlock = document.createElement('div');
         votingBlock.classList.add('voting');
 
-        this.smiles.map(smile => {
-            const cardBlock = document.createElement('div');
-            cardBlock.classList.add('card');
-
-            const span = document.createElement('span');
-            span.innerHTML = `&#${smile};`;
-
-            const counter = document.createElement('h3');
-            counter.innerHTML = `0`;
-
-            cardBlock.appendChild(span);
-            cardBlock.appendChild(counter);
+        this.smiles.forEach(smile => {
+            const cardBlock = this.generateCard(smile, 0);
             votingBlock.appendChild(cardBlock);
         });
 
@@ -54,5 +60,6 @@ const voting1 = new VotingProgram();
 voting1.render();
 voting1.listener();
 
-// const voting2 = new VotingProgram(['128569']);
-// voting2.render();
+const voting2 = new VotingProgram(['128569']);
+voting2.render();
+voting2.listener();
