@@ -1,36 +1,29 @@
 /*
-    На сторінці є дві кнопки. - переадресовується на інший сайт (за раніше введеним посиланням). Реалізувати
-    перевірку на http/https. Якщо протокол не вказаний - додаємо
+    На сторінці є дві кнопки. При натисканні на першу кнопку просимо користувача ввести в prompt посилання,
+    при натисканні на другу - переадресовується на інший сайт (за раніше введеним посиланням). Реалізувати
+    перевірку на http/https. Якщо протокол не вказано – додаємо.
  */
 
-class RedirectButton {
-    constructor(text, link) {
-        this.text = text;
-        this.link = this.addProtocol(link);
-    }
+const btnPrompt = document.querySelector('.btnPrompt');
+const btnLink = document.querySelector('.btnLink');
 
-    addProtocol(link) {
-        return link.substring(0, 4) === 'http' ? link : `http://${link}`;
-    }
+let enteredLink = '';
 
-    generateButton() {
-        // return `<a href="${this.link}" class="button">${this.text}</a>`;
-        const button = document.createElement('a');
-        button.href = this.link;
-        button.classList.add('button');
-        button.textContent = this.text;
-        return button;
-    }
+const getUserResponseNotEmpty = (message) => {
+    let userResponse;
+    do {
+        userResponse = prompt(message);
+    } while (userResponse === null || userResponse.trim() === '');
 
-    render() {
-        const root = document.querySelector('#root');
-        const button = this.generateButton();
-        root.appendChild(button);
-    }
-}
+    return userResponse;
+};
 
-const button1 = new RedirectButton('DOU', 'https://dou.ua/calendar/');
-button1.render();
+const addProtocol = (link) => {
+    return link.substring(0, 4) === 'http' ? link : `http://${link}`;
+};
 
-const button2 = new RedirectButton('DOU', 'dou.ua/calendar/');
-button2.render();
+const handlerClickBtnPrompt = () => enteredLink = addProtocol(getUserResponseNotEmpty('Enter the link'));
+const handlerClickBtnLink = () => enteredLink ? window.location.href = enteredLink : alert('Please enter the link!');
+
+btnPrompt.addEventListener('click', handlerClickBtnPrompt);
+btnLink.addEventListener('click', handlerClickBtnLink);
