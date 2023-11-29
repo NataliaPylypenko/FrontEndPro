@@ -59,10 +59,18 @@ const categories = [
     }
 ];
 
-class WebStore {
+class CategoryList {
+    constructor(element) {
+        this.element = element;
+        this.render();
+    }
 
-    constructor() {
-        this.renderCategories();
+    unsetActiveCategory(item) {
+        item.classList.remove('active');
+    }
+
+    setActiveCategory(item) {
+        item.classList.add('active');
     }
 
     generateCategories() {
@@ -83,38 +91,17 @@ class WebStore {
         return ul;
     }
 
-    renderCategories() {
-        const categoriesBlock = document.querySelector('#categoriesBlock');
-        categoriesBlock.appendChild(this.generateCategories());
-    }
-
-    removeActiveCategory(item) {
-        item.classList.remove('active');
-    }
-
-    setActiveCategory(item) {
-        item.classList.add('active');
-    }
-
-    renderProducts() {
-        const productsBlock = document.querySelector('#productsBlock');
-    }
-
-    renderProductDetails() {
-        const productDetailsBlock = document.querySelector('#productDetailsBlock');
-    }
-
-    buyProduct() {
-        const toBuy = document.querySelector('#toBuy');
+    render() {
+        this.element.appendChild(this.generateCategories());
     }
 }
 
-const webStore = new WebStore();
+const categoryList = new CategoryList(document.querySelector('#categoriesBlock'));
 
 const handlerClick = (e) => {
     const currentActiveLi = e.currentTarget.querySelector('.active');
-    currentActiveLi && webStore.removeActiveCategory(currentActiveLi);
-    webStore.setActiveCategory(e.target);
+    currentActiveLi && categoryList.unsetActiveCategory(currentActiveLi);
+    categoryList.setActiveCategory(e.target);
 };
 const categoriesBlock = document.querySelector('#categoriesBlock');
 categoriesBlock.addEventListener('click', handlerClick);
