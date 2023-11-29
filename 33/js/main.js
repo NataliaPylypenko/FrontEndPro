@@ -94,14 +94,37 @@ class CategoryList {
     render() {
         this.element.appendChild(this.generateCategories());
     }
+
+    onCategorySelect(callback) {
+        this.element.addEventListener('click', callback);
+    }
+}
+
+class AppController {
+    constructor(categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    initialize() {
+        this.categoryList.onCategorySelect((e) => {
+            this.handlerClick(e);
+            const products = this.getProductsByCategory(1);
+            console.log(products);
+        });
+    }
+
+    handlerClick = (e) => {
+        const currentActiveLi = e.currentTarget.querySelector('.active');
+        currentActiveLi && this.categoryList.unsetActiveCategory(currentActiveLi);
+        this.categoryList.setActiveCategory(e.target);
+    };
+
+    getProductsByCategory(categoryId) {
+        const category = categories.find(category => category.id === categoryId);
+        return category ? category.products : [];
+    }
 }
 
 const categoryList = new CategoryList(document.querySelector('#categoriesBlock'));
-
-const handlerClick = (e) => {
-    const currentActiveLi = e.currentTarget.querySelector('.active');
-    currentActiveLi && categoryList.unsetActiveCategory(currentActiveLi);
-    categoryList.setActiveCategory(e.target);
-};
-const categoriesBlock = document.querySelector('#categoriesBlock');
-categoriesBlock.addEventListener('click', handlerClick);
+const appController = new AppController(categoryList);
+appController.initialize();
