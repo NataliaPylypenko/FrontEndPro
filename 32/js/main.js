@@ -9,6 +9,8 @@
 class VotingProgram {
     constructor(smiles = ['128512', '128522', '128579', '128526', '129395']) {
         this.smiles = smiles;
+        this.render();
+        this.listener();
     }
 
     generateCard(smile, count) {
@@ -57,9 +59,4 @@ class VotingProgram {
 }
 
 const voting1 = new VotingProgram();
-voting1.render();
-voting1.listener();
-
 const voting2 = new VotingProgram(['128569']);
-voting2.render();
-voting2.listener();
