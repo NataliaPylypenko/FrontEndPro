@@ -58,3 +58,63 @@ const categories = [
         ]
     }
 ];
+
+class WebStore {
+
+    constructor() {
+        this.renderCategories();
+    }
+
+    generateCategories() {
+        const ul = document.createElement('ul');
+        ul.classList.add('categoriesList');
+
+        categories.forEach((category, i) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.setAttribute("href", "#");
+            a.innerHTML = category.name;
+            li.appendChild(a);
+            ul.appendChild(li);
+
+            i === 0 && this.setActiveCategory(a);
+        });
+
+        return ul;
+    }
+
+    renderCategories() {
+        const categoriesBlock = document.querySelector('#categoriesBlock');
+        categoriesBlock.appendChild(this.generateCategories());
+    }
+
+    removeActiveCategory(item) {
+        item.classList.remove('active');
+    }
+
+    setActiveCategory(item) {
+        item.classList.add('active');
+    }
+
+    renderProducts() {
+        const productsBlock = document.querySelector('#productsBlock');
+    }
+
+    renderProductDetails() {
+        const productDetailsBlock = document.querySelector('#productDetailsBlock');
+    }
+
+    buyProduct() {
+        const toBuy = document.querySelector('#toBuy');
+    }
+}
+
+const webStore = new WebStore();
+
+const handlerClick = (e) => {
+    const currentActiveLi = e.currentTarget.querySelector('.active');
+    currentActiveLi && webStore.removeActiveCategory(currentActiveLi);
+    webStore.setActiveCategory(e.target);
+};
+const categoriesBlock = document.querySelector('#categoriesBlock');
+categoriesBlock.addEventListener('click', handlerClick);

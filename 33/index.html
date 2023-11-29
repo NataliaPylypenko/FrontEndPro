@@ -10,20 +10,62 @@
         * {
             box-sizing: border-box;
         }
-
-        /* Create three equal columns that floats next to each other */
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 10px;
-            height: 300px; /* Should be removed. Only for demonstration */
+        body {
+            color: #BBB;
+            height: 100vh;
         }
-
+        #root {
+            height: inherit;
+        }
         /* Clear floats after the columns */
+        .row {
+            display: flex;
+            height: inherit;
+        }
         .row:after {
             content: "";
             display: table;
             clear: both;
+        }
+        /* Create three equal columns that floats next to each other */
+        .column {
+            width: calc(100% / 3);
+            padding: 10px;
+        }
+
+        .btn {
+            border: none;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .success {
+            color: #BBB;
+            background-color: #444857;
+        }
+        .success:hover {
+            color: #444857;
+            background-color: #BBB;
+        }
+
+        /* Style the navigation menu inside the left column */
+        .categoriesList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .categoriesList li a {
+            padding: 12px;
+            text-decoration: none;
+            color: #BBB;
+            display: block
+        }
+        .categoriesList li a.active {
+            color: #161f27;
+            background-color: #BBB;
+        }
+        .categoriesList li a:hover {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -31,17 +73,15 @@
 
 <div id="root">
     <div class="row">
-        <div class="column" style="background-color:#aaa;">
-            <h2>Column 1</h2>
-            <p>Some text..</p>
+        <div class="column" id="categoriesBlock" style="background-color:#161f27;">
+            <h2>Categories</h2>
         </div>
-        <div class="column" style="background-color:#bbb;">
-            <h2>Column 2</h2>
-            <p>Some text..</p>
+        <div class="column" id="productsBlock" style="background-color:#202b38;">
+            <h2>Products</h2>
         </div>
-        <div class="column" style="background-color:#ccc;">
-            <h2>Column 3</h2>
-            <p>Some text..</p>
+        <div class="column" id="productDetailsBlock" style="background-color:#161f27;">
+            <h2>Product Details</h2>
+            <button class="btn success" id="toBuy">To Buy</button>
         </div>
     </div>
 </div>
