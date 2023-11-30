@@ -3,16 +3,16 @@
 }
 body {
     color: #BBB;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    margin: 0;
 }
 #root {
-    height: inherit;
+    min-height: inherit;
 }
 /* Clear floats after the columns */
 .row {
     display: flex;
-    height: inherit;
+    min-height: inherit;
 }
 .row:after {
     content: "";
@@ -23,21 +23,6 @@ body {
 .column {
     width: calc(100% / 3);
     padding: 10px;
-}
-
-.btn {
-    border: none;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.success {
-    color: #BBB;
-    background-color: #444857;
-}
-.success:hover {
-    color: #444857;
-    background-color: #BBB;
 }
 
 /* Style the navigation menu inside the left column */

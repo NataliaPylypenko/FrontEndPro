@@ -148,7 +148,7 @@ class ProductDetails {
             </div>
             <h1>${product.name}</h1>
             <p class="price">${product.price}$</p>
-            <p><button class="btn success" id="toBuy">To Buy</button></p>
+            <p><button class="btn-buy">To Buy</button></p>
         `;
 
         div.innerHTML = child;
@@ -161,7 +161,11 @@ class ProductDetails {
     }
 
     onBuy(callback) {
-        this.element.addEventListener('click', callback);
+        this.element.addEventListener('click', (event) => {
+            if (event.target.classList.contains('btn-buy')) {
+                callback();
+            }
+        });
     }
 }
 
