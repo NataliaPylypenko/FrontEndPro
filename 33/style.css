@@ -72,7 +72,7 @@ body {
 }
 .card__img {
     position: relative;
-    padding-bottom: calc(6 / 5 * 100%);
+    padding-bottom: calc(10 / 9 * 100%);
 }
 .card__img img {
     position: absolute;
