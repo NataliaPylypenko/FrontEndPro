@@ -49,24 +49,24 @@
         }
 
         /* Style the navigation menu inside the left column */
-        .categoriesList {
+        .list {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-        .categoriesList li a {
+        .list li a {
             padding: 12px;
             text-decoration: none;
             color: #BBB;
             display: block;
             border: 1px solid transparent;
         }
-        .categoriesList li a.active {
+        .list li a.active {
             color: #161f27;
             background-color: #BBB;
             border: 1px solid #BBB;
         }
-        .categoriesList li a:hover {
+        .list li a:hover {
             border: 1px solid #BBB;
         }
     </style>
@@ -75,14 +75,17 @@
 
 <div id="root">
     <div class="row">
-        <div class="column" id="categoriesBlock" style="background-color:#161f27;">
+        <div class="column" style="background-color:#161f27;">
             <h2>Categories</h2>
+            <div id="categoriesBlock"></div>
         </div>
-        <div class="column" id="productsBlock" style="background-color:#202b38;">
+        <div class="column" style="background-color:#202b38;">
             <h2>Products</h2>
+            <div id="productsBlock"></div>
         </div>
-        <div class="column" id="productDetailsBlock" style="background-color:#161f27;">
+        <div class="column" style="background-color:#161f27;">
             <h2>Product Details</h2>
+            <div id="productDetailsBlock"></div>
             <button class="btn success" id="toBuy">To Buy</button>
         </div>
     </div>
