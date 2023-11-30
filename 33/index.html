@@ -6,70 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>33. Реалізувати подобу інтернет-магазину</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            color: #BBB;
-            height: 100vh;
-        }
-        #root {
-            height: inherit;
-        }
-        /* Clear floats after the columns */
-        .row {
-            display: flex;
-            height: inherit;
-        }
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        /* Create three equal columns that floats next to each other */
-        .column {
-            width: calc(100% / 3);
-            padding: 10px;
-        }
-
-        .btn {
-            border: none;
-            padding: 14px 28px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .success {
-            color: #BBB;
-            background-color: #444857;
-        }
-        .success:hover {
-            color: #444857;
-            background-color: #BBB;
-        }
-
-        /* Style the navigation menu inside the left column */
-        .list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        .list li a {
-            padding: 12px;
-            text-decoration: none;
-            color: #BBB;
-            display: block;
-            border: 1px solid transparent;
-        }
-        .list li a.active {
-            color: #161f27;
-            background-color: #BBB;
-            border: 1px solid #BBB;
-        }
-        .list li a:hover {
-            border: 1px solid #BBB;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -86,7 +23,6 @@
         <div class="column" style="background-color:#161f27;">
             <h2>Product Details</h2>
             <div id="productDetailsBlock"></div>
-            <button class="btn success" id="toBuy">To Buy</button>
         </div>
     </div>
 </div>

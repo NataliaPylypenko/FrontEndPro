@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    color: #BBB;
+    height: 100vh;
+}
+#root {
+    height: inherit;
+}
+/* Clear floats after the columns */
+.row {
+    display: flex;
+    height: inherit;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Create three equal columns that floats next to each other */
+.column {
+    width: calc(100% / 3);
+    padding: 10px;
+}
+
+.btn {
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.success {
+    color: #BBB;
+    background-color: #444857;
+}
+.success:hover {
+    color: #444857;
+    background-color: #BBB;
+}
+
+/* Style the navigation menu inside the left column */
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.list li a {
+    padding: 12px;
+    text-decoration: none;
+    color: #BBB;
+    display: block;
+    border: 1px solid transparent;
+}
+.list li a.active {
+    color: #161f27;
+    background-color: #BBB;
+    border: 1px solid #BBB;
+}
+.list li a:hover {
+    border: 1px solid #BBB;
+}
+
+/* Style the card */
+.card {
+    background-color: #202b38;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+.card__img {
+    position: relative;
+    padding-bottom: calc(2 / 3 * 100%);
+}
+.card__img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.price {
+    color: grey;
+    font-size: 22px;
+}
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+.card button:hover {
+    opacity: 0.7;
+}
