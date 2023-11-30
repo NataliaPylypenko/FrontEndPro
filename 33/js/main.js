@@ -23,7 +23,7 @@ const categories = [
                 "id": 102,
                 "name": "Ноутбук",
                 "price": 1299.99,
-                "src": ''
+                "src": 'https://mobilworld.by/upload/medialibrary/b06/b06727d3f4fe624f0ad0fbbfca73bed0.jpg'
             }
         ]
     },
@@ -35,13 +35,13 @@ const categories = [
                 "id": 201,
                 "name": "Футболка",
                 "price": 19.99,
-                "src": ''
+                "src": 'https://intertop.ua/load/SO84/1600x2133/MAIN.jpg'
             },
             {
                 "id": 202,
                 "name": "Джинси",
                 "price": 49.99,
-                "src": ''
+                "src": 'https://images.prom.ua/4360836500_w640_h640_zhenskie-dzhinsy-mom.jpg'
             }
         ]
     },
@@ -53,13 +53,13 @@ const categories = [
                 "id": 301,
                 "name": "Роман",
                 "price": 14.99,
-                "src": ''
+                "src": 'https://upload.wikimedia.org/wikipedia/ru/7/76/Inferno-dan-brown.jpg'
             },
             {
                 "id": 302,
                 "name": "Наукова книга",
                 "price": 24.99,
-                "src": ''
+                "src": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT53_6chFQCzJAxP4_xyKWJs4eBUPHk2RVeAg&usqp=CAU'
             }
         ]
     }
@@ -147,7 +147,7 @@ class ProductDetails {
                 <img src="${product.src}" style="width:100%">
             </div>
             <h1>${product.name}</h1>
-            <p class="price">${product.price}</p>
+            <p class="price">${product.price}$</p>
             <p><button class="btn success" id="toBuy">To Buy</button></p>
         `;
 
@@ -210,7 +210,7 @@ class AppController {
             // 13
             this.purchaseProduct(this.product);
 
-            //
+            // 14
             this.resetProductList();
             this.resetProductDetails();
         })
@@ -254,6 +254,7 @@ class AppController {
     resetProductDetails() {
         this.productDetails.element.innerHTML = '';
     }
+
 }
 
 const categoryList = new CategoryList(document.querySelector('#categoriesBlock'));

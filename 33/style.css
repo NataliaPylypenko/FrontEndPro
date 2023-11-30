@@ -4,6 +4,7 @@
 body {
     color: #BBB;
     height: 100vh;
+    overflow: hidden;
 }
 #root {
     height: inherit;
@@ -71,7 +72,7 @@ body {
 }
 .card__img {
     position: relative;
-    padding-bottom: calc(2 / 3 * 100%);
+    padding-bottom: calc(6 / 5 * 100%);
 }
 .card__img img {
     position: absolute;
