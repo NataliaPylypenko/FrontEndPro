@@ -82,8 +82,6 @@ class CategoryList {
             a.innerHTML = category.name;
             li.appendChild(a);
             ul.appendChild(li);
-
-            // i === 0 && this.setActiveItem(a);
         });
 
         return ul;
@@ -91,12 +89,21 @@ class CategoryList {
 
     // 1
     render(categories) {
+        this.reset();
         this.element.appendChild(this.generateCategories(categories));
+    }
+
+    reset() {
+        this.element.innerHTML = '';
     }
 
     // 2
     onCategorySelect(callback) {
         this.element.addEventListener('click', callback);
+    }
+
+    selectFirstItem() {
+        this.element.firstChild.firstChild.firstChild.click()
     }
 }
 
@@ -124,7 +131,13 @@ class ProductList {
 
     // 6
     render(products) {
+        this.reset();
+
         this.element.appendChild(this.generateProducts(products))
+    }
+
+    reset() {
+        this.element.innerHTML = '';
     }
 
     // 7
@@ -157,7 +170,13 @@ class ProductDetails {
     }
 
     render(product) {
+        this.reset();
+
         this.element.appendChild(this.generateProduct(product))
+    }
+
+    reset() {
+        this.element.innerHTML = '';
     }
 
     onBuy(callback) {
@@ -181,6 +200,10 @@ class AppController {
 
     // 1
     initialize() {
+        this.categoryList.reset();
+        this.productList.reset();
+        this.productDetails.reset();
+
         this.categoryList.render(this.categories);
 
         // 2
@@ -192,9 +215,11 @@ class AppController {
             // 5
             this.products = this.getProductsByCategory(categoryId);
             // 6
-            this.resetProductList();
+            this.productDetails.reset();
             this.productList.render(this.products);
         });
+
+        this.categoryList.selectFirstItem();
 
         // 7
         this.productList.onProductSelect((e) => {
@@ -205,18 +230,17 @@ class AppController {
             // 10
             this.product = this.getProductDetails(productId);
             // 11
-            this.resetProductDetails();
             this.productDetails.render(this.product);
         });
 
         // 12
-        this.productDetails.onBuy((e) => {
+        this.productDetails.onBuy(() => {
             // 13
             this.purchaseProduct(this.product);
 
             // 14
-            this.resetProductList();
-            this.resetProductDetails();
+            this.productDetails.reset();
+            this.categoryList.selectFirstItem()
         })
     }
 
@@ -251,14 +275,6 @@ class AppController {
     purchaseProduct(product) {
         alert(`Товар ${product.name} куплений!`);
     }
-
-    resetProductList() {
-        this.productList.element.innerHTML = '';
-    }
-    resetProductDetails() {
-        this.productDetails.element.innerHTML = '';
-    }
-
 }
 
 const categoryList = new CategoryList(document.querySelector('#categoriesBlock'));
