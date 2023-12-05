@@ -12,20 +12,20 @@
 
 let globalPositions;
 
-const getWorker = (worker) => console.log('worker', worker);
+const getWorker = (worker) => displayData(worker);
 
 const getAssistant = (assistant) => {
-    console.log('assistant', assistant);
+    displayData(assistant);
     getFile(`./files/${globalPositions[3]}.json`, getWorker);
 };
 
 const getManager = (manager) => {
-    console.log('manager', manager);
+    displayData(manager);
     getFile(`./files/${globalPositions[2]}.json`, getAssistant);
 };
 
 const getInvestor = (investor) => {
-    console.log('investor', investor);
+    displayData(investor);
     getFile(`./files/${globalPositions[1]}.json`, getManager);
 };
 
@@ -34,7 +34,22 @@ const getPositions = (positions) => {
     getFile(`./files/${positions[0]}.json`, getInvestor)
 };
 
-const getFile = (file, cb) => {
+const displayData = (data) => {
+    const tableBody = document.getElementById('tableBody');
+    const arr = Object.values(data);
+
+    const tr = document.createElement('tr');
+
+    arr.forEach(item => {
+        const td = document.createElement('td');
+        td.innerHTML = item;
+        tr.appendChild(td);
+    });
+
+    tableBody.appendChild(tr);
+};
+
+const getFile = (file, callback) => {
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', file);
@@ -45,7 +60,7 @@ const getFile = (file, cb) => {
             const isStatus = xhr.status >= 200 && xhr.status < 400;
             const response = isStatus ? JSON.parse(xhr.response) : [];
 
-            cb(response);
+            callback(response);
         }
     })
 };
