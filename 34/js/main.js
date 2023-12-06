@@ -8,31 +8,9 @@
     до worker (Щоб investor завжди виводився першим, worker - останнім)
  */
 
-// ["investor", "manager", "assistant", "worker"]
+// version 2
 
 let globalPositions;
-
-const getWorker = (worker) => displayData(worker);
-
-const getAssistant = (assistant) => {
-    displayData(assistant);
-    getFile(`./files/${globalPositions[3]}.json`, getWorker);
-};
-
-const getManager = (manager) => {
-    displayData(manager);
-    getFile(`./files/${globalPositions[2]}.json`, getAssistant);
-};
-
-const getInvestor = (investor) => {
-    displayData(investor);
-    getFile(`./files/${globalPositions[1]}.json`, getManager);
-};
-
-const getPositions = (positions) => {
-    globalPositions = positions;
-    getFile(`./files/${positions[0]}.json`, getInvestor)
-};
 
 const displayData = (data) => {
     const tableBody = document.getElementById('tableBody');
@@ -65,4 +43,79 @@ const getFile = (file, callback) => {
     })
 };
 
+const createPositionHandler = (index) => {
+    return (data) => {
+        displayData(data);
+
+        if (index < globalPositions.length - 1) {
+            const nextIndex = index + 1;
+            getFile(`./files/${globalPositions[nextIndex]}.json`, createPositionHandler(nextIndex));
+        }
+    };
+};
+
+const getPositions = (positions) => {
+    globalPositions = positions;
+    getFile(`./files/${globalPositions[0]}.json`, createPositionHandler(0))
+};
+
 getFile('./files/positions.json', getPositions);
+
+// version 1
+
+// let globalPositions;
+//
+// const getWorker = (worker) => displayData(worker);
+//
+// const getAssistant = (assistant) => {
+//     displayData(assistant);
+//     getFile(`./files/${globalPositions[3]}.json`, getWorker);
+// };
+//
+// const getManager = (manager) => {
+//     displayData(manager);
+//     getFile(`./files/${globalPositions[2]}.json`, getAssistant);
+// };
+//
+// const getInvestor = (investor) => {
+//     displayData(investor);
+//     getFile(`./files/${globalPositions[1]}.json`, getManager);
+// };
+//
+// const getPositions = (positions) => {
+//     globalPositions = positions;
+//     getFile(`./files/${positions[0]}.json`, getInvestor)
+// };
+//
+// const displayData = (data) => {
+//     const tableBody = document.getElementById('tableBody');
+//     const arr = Object.values(data);
+//
+//     const tr = document.createElement('tr');
+//
+//     arr.forEach(item => {
+//         const td = document.createElement('td');
+//         td.innerHTML = item;
+//         tr.appendChild(td);
+//     });
+//
+//     tableBody.appendChild(tr);
+// };
+//
+// const getFile = (file, callback) => {
+//     const xhr = new XMLHttpRequest();
+//
+//     xhr.open('GET', file);
+//     xhr.send();
+//
+//     xhr.addEventListener('readystatechange', () => {
+//         if (xhr.readyState === 4) {
+//             const isStatus = xhr.status >= 200 && xhr.status < 400;
+//             const response = isStatus ? JSON.parse(xhr.response) : [];
+//
+//             callback(response);
+//         }
+//     })
+// };
+//
+// getFile('./files/positions.json', getPositions);
