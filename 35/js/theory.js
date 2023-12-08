@@ -252,41 +252,41 @@
   Get positions
  */
 
-const getFile = file => {
-    return new Promise(
-        (resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', file);
-            xhr.send();
-
-            xhr.addEventListener('readystatechange', () => {
-                if(xhr.readyState === 4) {
-                    const isStatus = xhr.status < 400;
-                    const result = JSON.parse(xhr.response);
-                    const status = xhr.status;
-
-                    isStatus ? resolve(result) : reject(status);
-                }
-            })
-        }
-    )
-};
-
-getFile('./files/assistant.json')
-    .then(
-        data => {
-            console.log('🟢 OK in assistant function');
-            console.log('Assistant: ', data);
-        }
-    )
-    .then(
-        () => {
-            return getFile('./files/manager.json')
-        }
-    )
-    .then(
-        data => {
-            console.log('🟢 OK in manager function');
-            console.log('Manager: ', data);
-        }
-    );
+// const getFile = file => {
+//     return new Promise(
+//         (resolve, reject) => {
+//             const xhr = new XMLHttpRequest();
+//             xhr.open('GET', file);
+//             xhr.send();
+//
+//             xhr.addEventListener('readystatechange', () => {
+//                 if(xhr.readyState === 4) {
+//                     const isStatus = xhr.status < 400;
+//                     const result = JSON.parse(xhr.response);
+//                     const status = xhr.status;
+//
+//                     isStatus ? resolve(result) : reject(status);
+//                 }
+//             })
+//         }
+//     )
+// };
+//
+// getFile('./files/assistant.json')
+//     .then(
+//         data => {
+//             console.log('🟢 OK in assistant function');
+//             console.log('Assistant: ', data);
+//         }
+//     )
+//     .then(
+//         () => {
+//             return getFile('./files/manager.json')
+//         }
+//     )
+//     .then(
+//         data => {
+//             console.log('🟢 OK in manager function');
+//             console.log('Manager: ', data);
+//         }
+//     );
