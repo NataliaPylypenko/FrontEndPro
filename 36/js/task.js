@@ -4,7 +4,7 @@ const refs = {
     jokesList: document.querySelector('#jokesList'),
 };
 
-const getFile = file => fetch(file)
+const fetchData = file => fetch(file)
     .then(data => {
         return data.ok ? data.json() : Promise.reject(data.statusText)
     });
@@ -27,14 +27,14 @@ const renderJoke = (joke) => {
 
 // get data
 
-getFile(`${refs.apiUrl}categories`)
+fetchData(`${refs.apiUrl}categories`)
     .then(categories => renderCategories(categories))
     .catch(err => console.log(err));
 
 const handleChangeCategory = (e) => {
     const selectedCategory = refs.jokesCategories.value;
 
-    getFile(`${refs.apiUrl}random?category=${selectedCategory}`)
+    fetchData(`${refs.apiUrl}random?category=${selectedCategory}`)
         .then(joke => {
             const previousOption = [...refs.jokesCategories.options].find(element => element.value === joke.categories[0]);
             if (previousOption) previousOption.disabled = false;
