@@ -1,5 +1,6 @@
 const refs = {
     apiUrl: 'https://api.chucknorris.io/jokes/',
+    postForm: document.querySelector('#postForm'),
     jokesCategories: document.querySelector('#jokesCategories'),
     jokesList: document.querySelector('#jokesList'),
 };
