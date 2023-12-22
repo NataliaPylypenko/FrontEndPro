@@ -105,3 +105,8 @@ form::after {
 .comment {
     margin-left: 100px;
 }
+
+.comment .card__header {
+    text-align: left;
+    padding: 10px 20px;
+}
